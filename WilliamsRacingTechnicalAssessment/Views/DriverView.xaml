@@ -1,0 +1,122 @@
+﻿<UserControl x:Class="WilliamsRacingTechnicalAssessment.Views.DriverView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WilliamsRacingTechnicalAssessment.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="950">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="Margin" Value="5,5,0,0"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="Margin" Value="0,5,15,0"/>
+                    </Style>
+                </Grid.Resources>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Forename:"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Surname:"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Nationality:"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="forenameTextBox" TextChanged="TextBox_TextChanged" Text="{Binding ForenameText}"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="surnameTextBox" TextChanged="TextBox_TextChanged" Text="{Binding SurnameText}"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="nationalityTextBox" TextChanged="TextBox_TextChanged" Text="{Binding NationalityText}"/>
+            </Grid>
+            <WrapPanel HorizontalAlignment="Right">
+                <WrapPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="10,10,15,0"/>
+                        <Setter Property="Width" Value="50"/>
+                    </Style>
+                </WrapPanel.Resources>
+                <Button Name="clearButton" Content="Clear" Command="{Binding ClearCommand}"/>
+            </WrapPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="15"/>
+                    </Style>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="Padding" Value="0"/>
+                    </Style>
+                </Grid.Resources>
+                <StackPanel Grid.Row="0" Grid.Column="0">
+                    <TextBlock Text="Driver ID:"/>
+                    <TextBlock Text="Driver ref:"/>
+                    <TextBlock Text="Number:"/>
+                    <TextBlock Text="Code:"/>
+                    <TextBlock Text="Forename:"/>
+                    <TextBlock Text="Surname:"/>
+                    <TextBlock Text="DOB:"/>
+                    <TextBlock Text="Nationality:"/>
+                    <TextBlock Text="URL:"/>
+                    <TextBlock Text="No. times on podium:"/>
+                    <TextBlock Text="No. races entered:"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="1">
+                    <StackPanel DataContext="{Binding SelectedDriver}">
+                        <Label Content="{Binding driverId}"/>
+                        <Label Content="{Binding driverRef}"/>
+                        <Label Content="{Binding number}"/>
+                        <Label Content="{Binding code}"/>
+                        <Label Content="{Binding forename}"/>
+                        <Label Content="{Binding surname}"/>
+                        <Label Content="{Binding dob}"/>
+                        <Label Content="{Binding nationality}"/>
+                        <Label Content="{Binding url}"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Content="{Binding NumTimesOnPodium}"/>
+                        <Label Content="{Binding NumRacesEntered}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <ListView Grid.Row ="1" Grid.ColumnSpan="2" Name="driversListView" ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Driver ID" DisplayMemberBinding="{Binding driverId}"/>
+                    <GridViewColumn Header="Driver ref" DisplayMemberBinding="{Binding driverRef}"/>
+                    <GridViewColumn Header="Number" DisplayMemberBinding="{Binding number}"/>
+                    <GridViewColumn Header="Code" DisplayMemberBinding="{Binding code}"/>
+                    <GridViewColumn Header="Forename" DisplayMemberBinding="{Binding forename}"/>
+                    <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding surname}"/>
+                    <GridViewColumn Header="DOB" DisplayMemberBinding="{Binding dob}"/>
+                    <GridViewColumn Header="Nationality" DisplayMemberBinding="{Binding nationality}"/>
+                    <GridViewColumn Header="URL" DisplayMemberBinding="{Binding url}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

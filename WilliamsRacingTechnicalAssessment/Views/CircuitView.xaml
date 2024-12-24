@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="WilliamsRacingTechnicalAssessment.Views.CircuitView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WilliamsRacingTechnicalAssessment.Views" 
+             xmlns:viewmodels="clr-namespace:WilliamsRacingTechnicalAssessment.ViewModels" 
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="950">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="Margin" Value="5,5,0,0"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="Margin" Value="0,5,15,0"/>
+                    </Style>
+                </Grid.Resources>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Location:"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Country:"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Name="nameTextBox" TextChanged="TextBox_TextChanged" Text="{Binding NameText}"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="locationTextBox" TextChanged="TextBox_TextChanged" Text="{Binding LocationText}"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Name="countryTextBox" TextChanged="TextBox_TextChanged" Text="{Binding CountryText}"/>
+            </Grid>
+            <WrapPanel HorizontalAlignment="Right">
+                <WrapPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="10,10,15,0"/>
+                        <Setter Property="Width" Value="50"/>
+                    </Style>
+                </WrapPanel.Resources>
+                <Button Name="clearButton" Content="Clear" Command="{Binding ClearCommand}"/>
+            </WrapPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="15"/>
+                    </Style>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="Padding" Value="0"/>
+                    </Style>
+                </Grid.Resources>
+                <StackPanel Grid.Row="0" Grid.Column="0">
+                    <TextBlock Text="Circuit ID:"/>
+                    <TextBlock Text="Circuit ref:"/>
+                    <TextBlock Text="Name:"/>
+                    <TextBlock Text="Location:"/>
+                    <TextBlock Text="Country:"/>
+                    <TextBlock Text="Latitude:"/>
+                    <TextBlock Text="Longitude:"/>
+                    <TextBlock Text="Altitude:"/>
+                    <TextBlock Text="URL:"/>
+                    <TextBlock Text="Fastest lap (all races):"/>
+                    <TextBlock Text="Total races completed:"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="1">
+                    <StackPanel DataContext="{Binding SelectedCircuit}">
+                        <Label Name="circuitIdLabel" Content="{Binding circuitId}"/>
+                        <Label Content="{Binding circuitRef}"/>
+                        <Label Content="{Binding name}"/>
+                        <Label Content="{Binding location}"/>
+                        <Label Content="{Binding country}"/>
+                        <Label Content="{Binding lat}"/>
+                        <Label Content="{Binding lng}"/>
+                        <Label Content="{Binding alt}"/>
+                        <Label Content="{Binding url}"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label Name="fastestLapTimeLabel" Content="{Binding FastestLapTime}"/>
+                        <Label Name="totalRacesCompletedLabel" Content="{Binding TotalRacesCompleted}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <ListView Grid.Row ="1" Grid.ColumnSpan="2" Name="circuitsListView" ItemsSource="{Binding Circuits}" SelectedItem="{Binding SelectedCircuit}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Circuit ID" DisplayMemberBinding="{Binding circuitId}"/>
+                    <GridViewColumn Header="Circuit ref" DisplayMemberBinding="{Binding circuitRef}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding name}"/>
+                    <GridViewColumn Header="Location" DisplayMemberBinding="{Binding location}"/>
+                    <GridViewColumn Header="Country" DisplayMemberBinding="{Binding country}"/>
+                    <GridViewColumn Header="Lat" DisplayMemberBinding="{Binding lat}"/>
+                    <GridViewColumn Header="Lng" DisplayMemberBinding="{Binding lng}"/>
+                    <GridViewColumn Header="Alt" DisplayMemberBinding="{Binding alt}"/>
+                    <GridViewColumn Header="URL" DisplayMemberBinding="{Binding url}"/>
+                </GridView>
+            </ListView.View>
+        </ListView> 
+    </Grid>
+</UserControl>

@@ -1,0 +1,32 @@
+﻿<Window x:Class="WilliamsRacingTechnicalAssessment.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WilliamsRacingTechnicalAssessment"
+        xmlns:views="clr-namespace:WilliamsRacingTechnicalAssessment.Views"
+        xmlns:viewModels="clr-namespace:WilliamsRacingTechnicalAssessment.ViewModels"
+        mc:Ignorable="d"
+        Title="Williams Racing - Technical Assessment" Height="550" Width="950">
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:CircuitViewModel}">
+            <views:CircuitView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:DriverViewModel}">
+            <views:DriverView/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <TabControl SelectedIndex="{Binding SelectedIndex, Mode=OneWayToSource}">
+            <TabItem Header="Circuits">
+                <ContentControl Content="{Binding CurrentViewModel}"/>
+            </TabItem>
+            <TabItem Header="Drivers">
+                <ContentControl Content="{Binding CurrentViewModel}"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
